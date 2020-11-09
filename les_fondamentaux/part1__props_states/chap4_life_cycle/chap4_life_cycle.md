@@ -81,12 +81,18 @@ Nous allons voir une méthode qui s'exécute lorsque les props ou state changent
 
 Vous pouvez utiliser setState dans cette méthode, **mais** attention à mettre dans ce cas une condition sur l'état des props ou state pour ne pas avoir une boucle infinie dans le rendu.
 
+Cette méthode n'est pas exécutée au montage.
+
 ```js
 
   componentDidUpdate(prevProps, prevStates) {
 
       if (this.state.count !== prevStates.count) {
           console.log( 'new state count :' , this.state.count, 'old state count',  prevStates.count)
+      }
+
+       if (this.props.parentCounter !== prevProps.parentCounter) {
+          console.log( 'new props parentCounter :' , this.props.count, 'old props parentCounter',  prevProps.count)
       }
   }
 
@@ -111,7 +117,17 @@ En résumé retenez l'existence des méthodes suivantes dans le cycle de vie :
 
 ## Exercice life cycle
 
-En vous aidant du life cycle de React créez un pavage dynamique d'étoiles. Chaque ligne doit comporter 20 étoiles. Les étoiles apparaîssent l'une à la suite de l'autre avec un délais de 500ms. Une fois qu'une ligne est tracée on trace la ligne suivante.
+Dans cet exercice vous n'utiliserez pas les CSS pour afficher les étoiles.
+
+En vous aidant du life cycle de React créez un pavage dynamique d'étoiles. Chaque ligne doit comporter 20 étoiles. Les étoiles apparaîssent l'une à la suite de l'autre avec un délais de 500ms. Une fois qu'une ligne est tracée on trace la ligne suivante. Créez les composants suivants :
+
+```txt
+
+    App
+     .
+     .
+    Bar  < -- créez autant de Bar que de ligne à dessiner
+```
 
 Tracez 10 lignes au total
 

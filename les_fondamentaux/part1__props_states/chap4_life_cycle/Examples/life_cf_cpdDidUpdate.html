@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class Counter extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    count : 0,
+                    message : ''
+                }
+                console.log("1. constructor".toUpperCase());
+            }
+
+            componentDidMount(){
+                console.log("3. componentDidMount".toUpperCase());
+                this.interval = setInterval(( ) => {
+                    this.setState({
+                        count : this.state.count + 1
+                    })
+                }, 5000);
+            }
+
+            //exécuter car le state a changé n'est pas e
+            componentDidUpdate(prevProps, prevStates) {
+
+                console.log("X. componentDidUpdate".toUpperCase());
+
+                if ( this.state.count !== prevStates.count ) {
+                    console.log( 'new state count :' , this.state.count, 'old state count',  prevStates.count)
+                }
+
+                // n'a pas bougé car message n'a pas changé depuis son état initial
+                if ( this.state.message !== prevStates.message ) {
+                    console.log( 'new state message :' , this.state.message, 'old state message',  prevStates.message)
+                }
+
+                // les props ont changé 
+                if ( this.props.rand !== prevProps.rand ) {
+                    console.log( 'new props rand :' , this.props.rand, 'old props rand',  prevProps.rand)
+                }
+            }
+
+            render() {
+                console.log("2. render".toUpperCase());
+                
+                const { count } = this.state;
+                
+                return (
+                    <div className="heading" >
+                        <p>{count}</p>
+                    </div>
+                )
+            }
+        }
+
+        class CounterHome extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    rand : true,
+                }
+            }
+            componentDidMount(){
+                this.interval = setInterval(( ) => {
+                    this.setState({
+                        rand : Math.random()
+                    })
+                }, 1000);
+            }
+
+            render(){
+
+                const { rand } = this.state;
+
+                return(
+                    <Counter rand={rand} />
+                )
+            }
+        }
+
+        // Rendu dans le DOM
+        ReactDOM.render(
+            <CounterHome />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
