@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading{
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class User extends React.Component{
+
+            render(){
+
+                const { name } = this.props;
+
+                return(
+                    <p>User : {name} </p>
+                )
+            }
+        }
+
+        class App extends React.Component{
+            
+
+            render(){
+
+                // pour afficher une collection comme un array en JS dans le rendu
+                // vous êtes obligé d'utiliser un map
+                // accolade pour que JSX interprète le code JS dans le rendu
+                const numbers = [1, 2, 3];
+
+                // unpacking en JS permet d'assigner des valeurs dans des clé
+                const { title } = this.props;
+
+                // les props sont en lecture seule ...
+                // this.props.subtitle = "Hello React";
+
+                return(
+                    <div className="main">
+                        <h1>{title}</h1>
+                        <p>Lorem 5 + 7 { 5 + 7 }</p>
+                        {numbers.map((number,indice) => 
+                            <div key={indice}>
+                                <p>{number}</p> 
+                            </div>
+                        )}
+                        <User name="Alan" />
+                        <User name="Spohie" />
+                        <User name="Phi" />
+                    </div>
+                );
+            }
+        }
+
+
+        // Rendu dans le DOM
+        ReactDOM.render(
+            <App title="Mon premier composant" subtitle="je suis un sous-titre"/>,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>
