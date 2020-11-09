@@ -22,7 +22,17 @@ constructor(props){
 
 ```
 
-2. La méthode de React **componentDidMount** est exécutée une fois que le composant React est monté dans le DOM.
+2. Render
+
+```js
+
+render(){
+    // ...
+}
+
+```
+
+3. La méthode de React **componentDidMount** est exécutée une fois que le composant React est monté dans le DOM.
 
 ```js
 
@@ -32,7 +42,7 @@ componentDidMount(){
 
 ```
 
-3. La méthode **componentWillUnmount** est exécutée lorsqu'on démonte le composant (suppression de la variable composant dans le script).
+4. La méthode **componentWillUnmount** est exécutée lorsqu'on démonte le composant (suppression de la variable composant dans le script).
 
 ```js
 
@@ -49,6 +59,8 @@ componentWillUnmount(){
 ## 1. Exercice Clocks
 
 Créez deux composants (classes), la première App contiendra une horloge, c'est à dire un composant Clock. Dans le composant App vous allez gérer le démontage de l'horloge : au bout de 5 secondes l'horloge est démontée. En utilisant le cycle de vie trouvez la bonne manière d'implémenter le démarrage et l'arrêt de cette horloge. Vous ne supprimerez pas le container mais uniquement le composant Clock pour répondre à la problématique posée dans cet exercice.
+
+Pensez lorsque vous allez démonter l'horloge à nettoyer le/les variable(s) qui pourrai(ent) prendre de la mémoire dans l'application.
 
 Hiérarchie des composants :
 

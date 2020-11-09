@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <style>
+        .special {
+            margin-top: 20%;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        /*
+            Faire passer les messages letters de App vers Clock de manière cyclique a, b, c ... puis a, b, c ...
+            Affichez ce message dans la balise h1 de Clock
+        */
+        const container = document.getElementById('root');
+        const TIMER = 1000;
+        const LIFE = 5 * TIMER;
+
+        class Clock extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    date: new Date
+                };
+
+                this.interval = null; // pp de la classe elle-meme
+            }
+
+
+            componentDidMount() {
+                this.interval = setInterval(()=> {
+                    this.setState({ date : new Date})
+                }, TIMER);
+            }
+
+            // éviter le memory leak (fuite de mémoire)
+            componentWillUnmount() {
+                clearInterval(this.interval);
+            }
+
+            render() {
+
+                const { date } = this.state;
+
+                return (
+                    <div className="container " >
+                        <div className="alert alert-dark" role="alert">
+                            <p>{date.toLocaleTimeString()}</p>
+                        </div>
+                    </div >
+                );
+            }
+        }
+
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    life: true
+                };
+            }
+
+            componentDidMount() {
+
+                setTimeout(
+                    () => {
+                        this.setState({ life: false })
+                    }, LIFE
+                )
+            }
+
+            render() {
+                const { life } = this.state;
+
+                return (
+                    <div className="container">
+                        { /*life === false ? <p>Dead</p> : <Clock /> */}
+                        { /* 
+                            le connecteur && en JS passif 
+                            si life est false JS n'évalue pas la deuxième condition
+                            si life est vrai alors JS évalue la deuxième condition lors de son évaluation il a exécuté le code <Clock />
+                            et donc le composant Clock est défini
+                        */}
+                        { life && ( 
+                                <React.Fragment>
+                                    <h1>Voici mon horloge</h1>
+                                    <Clock /> 
+                                </React.Fragment>
+                            ) }
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            container
+        );
+
+    </script>
+</body>
+
+</html>
