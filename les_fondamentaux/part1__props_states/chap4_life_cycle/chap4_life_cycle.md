@@ -42,7 +42,7 @@ componentDidMount(){
 
 ```
 
-4. La méthode **componentWillUnmount** est exécutée lorsqu'on démonte le composant (suppression de la variable composant dans le script).
+La méthode **componentWillUnmount** est exécutée lorsqu'on démonte le composant (suppression de la variable composant dans le script).
 
 ```js
 
@@ -129,12 +129,25 @@ En vous aidant du life cycle de React créez un pavage dynamique d'étoiles. Cha
     Bar  < -- créez autant de Bar que de ligne à dessiner
 ```
 
-Tracez 10 lignes au total
-
-Remarque : pour commencer cet exercice tracez d'abord une ligne.
+1. Dans un premier temps vous afficherez les 20 étoiles sur les 10 lignes. 
 
 ```text
-    * * * * * * * * * * * * * * * * * * * * * *
-    * * * * * * * * * *
-
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
+    * * * * * * * * * * ...
 ```
+
+2. Puis essayez de faire démarrez chaque ligne de manière décalé. Une ligne après-l'autre dessine les 20 étoiles de la ligne.
+
+```text
+    * * * * * * * * * * * * * * * * * * * * 
+    * * * * * ...
+```
+
