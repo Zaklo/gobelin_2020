@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+        .principal{
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class App extends React.Component{
+            constructor(props){
+                super(props);
+                // le state peut mutter
+                this.state = {
+                    count : 0
+                }
+
+                console.log("1. constructeur".toUpperCase());
+            }
+
+            componentDidMount(){
+                console.log("3. componentDidMount".toUpperCase(), Math.random() );
+                this.state.count = 100; // la lire 
+                console.log(this.state.count);
+                setInterval(() => {
+                    this.setState({ count : this.state.count + 1 }); // ré-exécute le render
+                }, 1000);
+            }
+
+            // exécuter au moment de la suppression de App dans la mémoire 
+            componentWillUnmount(){ 
+                console.log("componentWillUnmount".toUpperCase());
+            }
+
+            render(){
+
+                // props sont en lecture seule
+                //this.props.title = "Vue JS";
+                console.log("2. render".toUpperCase(), Math.random());
+                return(
+                    <div>
+                        <h1>{this.props.title}</h1>
+                        <p>{this.state.count}</p>
+                    </div>
+                )
+            }
+        }
+
+
+        class Home extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    life : true
+                }
+            }
+            componentDidMount(){
+
+                setTimeout(() => {
+                    this.setState({ life : false})
+                }, 2000);
+            }
+
+            render(){
+
+                // React va démonter supprimer physiquement de la mémoire App si life = false
+                if(this.state.life)
+                    return(
+                        <App  title="React" />
+                    )
+
+                return (
+                    <p>App is dead</p>
+                )
+            }
+
+        }
+       
+        ReactDOM.render(
+            <Home />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
