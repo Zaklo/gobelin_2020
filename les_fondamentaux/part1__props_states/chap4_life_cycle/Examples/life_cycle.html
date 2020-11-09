@@ -40,6 +40,11 @@
                 this.setState({ count : 1})
             }
 
+            // suppression du composant 
+            componentWillUnmount(){
+                console.log('componentWillUnmount'.toUpperCase());
+            }
+
             render() {
                 
                 console.log('2. RENDER');
@@ -55,9 +60,39 @@
             }
         }
 
+        class Home extends React.Component{
+            // constructor 1 fois au dé
+            constructor(props){
+                super(props);
+                this.state = {
+                    life : true
+                }
+            }
+
+            componentDidMount(){
+                setTimeout(() => {
+                    this.setState({ life : false});
+                }, 1000);
+            }
+
+            render(){
+                const { life } = this.state;
+
+                if( life === true)
+                    return(
+                        <App />
+                    )
+
+                return(
+                    <p>App is dead</p>
+                )
+
+            }
+        }
+
         // Rendu dans le DOM
         ReactDOM.render(
-            <App />,
+            <Home />,
             document.getElementById('root')
         );
     </script>
