@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+            // constructor 1 fois au dé
+            constructor(props){
+                super(props);
+                this.state = {
+                    count : 0
+                }
+
+                console.log('1. CONSTRUCTOR');
+            }
+
+            componentDidMount(){
+                console.log('3. componentDidMount'.toUpperCase());
+
+                this.setState({ count : 1})
+            }
+
+            render() {
+                
+                console.log('2. RENDER');
+
+                const { count } = this.state;
+                
+                return (
+                    <div className="heading" >
+                        <p>Life Cycle</p>
+                        <p>{count}</p>
+                    </div>
+                )
+            }
+        }
+
+        // Rendu dans le DOM
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
