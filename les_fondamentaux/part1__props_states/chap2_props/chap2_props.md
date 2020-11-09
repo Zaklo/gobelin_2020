@@ -67,6 +67,12 @@ Voici pour vous aider la hiérarchie des composants :
 
 **Indications** : créez trois classes dans le même fichier. Utilisez la source ex1_props.html du cours pour commencer. Et n'oubliez pas d'utiliser map pour parcourir les messages et les afficher.
 
+Données d'exemple pour les messages :
+
+```js
+const messages = ["Hello React !", "Aujourd'hui on est lundi", "JSX c'est mieux !"];
+```
+
 ## 2. Exercice Clock
 
 Pour faire cet exercice dans un fichier **ex2_clock.html** comme pour l'exercice précédent importez les dépendances React.
