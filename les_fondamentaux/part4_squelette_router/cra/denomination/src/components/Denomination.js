@@ -1,5 +1,14 @@
 import { Component } from "react";
 
+import styled from 'styled-components';
+import Button from '../Styles/Button';
+
+const Pres = styled.h1`
+    font-size: 1.5em;
+    text-align: left;
+    color: palevioletred;
+`;
+
 class Denomination extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +78,7 @@ class Denomination extends Component {
 
     return (
       <div>
-        <h2>Tokens : {denomination.join(", ")}</h2>
+        <Pres>Tokens : {denomination.join(", ")}</Pres>
         { message && <p>{message}</p>}
         <form onSubmit={this.handleSubmit}>
           <div>
@@ -81,12 +90,12 @@ class Denomination extends Component {
             />
           </div>
           <div>
-            <input type="submit" />
+            <Button primary >Calcul</Button>
           </div>
         </form>
         {tokens.length > 0 && (
           <>
-            <h2>Amount : {tokens[0].amount} </h2>
+            <Pres>AMOUNT : {tokens[0].amount} </Pres>
             <ul>
               {tokens.slice(1).map(({ token, quantity }, i) => (
                 <li key={i}>
