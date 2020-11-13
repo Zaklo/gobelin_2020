@@ -1,16 +1,15 @@
-import { Component } from 'react';
+import { Component } from "react";
+import Denomination from "./components/Denomination";
+const tokens = [1, 5, 10, 20, 50, 100, 200];
 
-import Denomination from './components/Denomination';
-
-import './App.css';
-
-class App extends  Component{
-
-  render(){
-
+class App extends Component {
+  render() {
     return (
-      <p>Hello React</p>
-    )
+      <>
+        <h1>Dénomination</h1>
+        <Denomination tokens={tokens} />
+      </>
+    );
   }
 }
 
