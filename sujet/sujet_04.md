@@ -12,7 +12,7 @@ Vous devez utiliser ThreeJS pour la création des cubes. Dans ce cas soit vous u
 npm install three react-three-fiber
 ```
 
-![ressource](https://github.com/pmndrs/react-three-fiber)
+[ressource](https://github.com/pmndrs/react-three-fiber)
 
 Voici les fonctionnalités demandées :
 
