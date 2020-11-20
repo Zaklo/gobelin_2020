@@ -1,6 +1,6 @@
 # Sujet 04 Three JS 
 
-Installez le projet svg-circle CRA & simpled-components. Nous allons générer un pavage à l'aide de cubes. Chaque cube aura un numéro l'identifiant dans le rendu :
+Installez le projet cubes CRA & simpled-components. Nous allons générer un pavage à l'aide de cubes. Chaque cube aura un numéro l'identifiant dans le rendu :
 
 ```txt
     [1] [2] [3] [4]
